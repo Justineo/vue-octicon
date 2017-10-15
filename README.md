@@ -59,19 +59,20 @@ if you are using `vue-cli` to create your project, the `webpack` template may ex
 
 To fix this my creating an exception, edit your webpack config:
 
-> In older versions of vue-cli: 
+#### In older versions of vue-cli: 
 
 Change the `exclude` value from `/node_modules/` to `/node_modules(?![\\/]vue-octicon[\\/])/`.
 
-> In the latest version of vue-cli (as of Oct. 2017):
+#### In the latest version of vue-cli (as of Oct. 2017):
 
 ```js
-// Change this code
+// Find where webpack looks for files to run through babel
+
 test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
-// to this code
 
+// and change it to this, so it knows to go get and transpile vue-octicon too
 
 test: /\.js$/,
         loader: 'babel-loader',
