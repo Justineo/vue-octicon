@@ -55,7 +55,28 @@ import 'vue-octicon/icons'
 
 **Heads up**
 
-if you are using `vue-cli` to create your project, the `webpack` template may exclude `node_modules` from files to be transpiled by Babel. Change the `exclude` value from `/node_modules/` to `/node_modules(?![\\/]vue-octicon[\\/])/` to fix the problem.**
+if you are using `vue-cli` to create your project, the `webpack` template may exclude `node_modules` from files to be transpiled by Babel. 
+
+To fix this my creating an exception, edit your webpack config:
+
+> In older versions of vue-cli: 
+
+Change the `exclude` value from `/node_modules/` to `/node_modules(?![\\/]vue-octicon[\\/])/`.
+
+> In the latest version of vue-cli (as of Oct. 2017):
+
+```js
+// Change this code
+test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test')]
+// to this code
+
+
+test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vue-octicon')]
+```
 
 ### CommonJS with NPM without ES Next support
 
