@@ -53,9 +53,32 @@ import 'vue-octicon/icons/repo'
 import 'vue-octicon/icons'
 ```
 
-**Heads up**
+#### Heads up
 
-if you are using `vue-cli` to create your project, the `webpack` template may exclude `node_modules` from files to be transpiled by Babel. Change the `exclude` value from `/node_modules/` to `/node_modules(?![\\/]vue-octicon[\\/])/` to fix the problem.**
+if you are using `vue-cli` to create your project, the `webpack` template may exclude `node_modules` from files to be transpiled by Babel. 
+
+To fix this you will need to edit `/build/webpack.base.conf.js`. If you do not do this, UglifyJS will halt your build with an error as it cannot parse ES2015 syntax.
+
+##### In the latest version of vue-cli (as of Oct. 2017):
+
+```js
+// Find where webpack looks for files to run through babel
+
+test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test')]
+
+// and change it to this, so it knows to go get and transpile vue-octicon too
+
+test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vue-octicon')]
+```
+
+##### In older versions of vue-cli: 
+
+Change the `exclude` value from `/node_modules/` to `/node_modules(?![\\/]vue-octicon[\\/])/`.
+
 
 ### CommonJS with NPM without ES Next support
 
