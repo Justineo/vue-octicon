@@ -57,7 +57,7 @@ import 'vue-octicon/icons'
 
 if you are using `vue-cli` to create your project, the `webpack` template may exclude `node_modules` from files to be transpiled by Babel. 
 
-To fix this you will need to edit `/build/webpack.base.conf.js`
+To fix this you will need to edit `/build/webpack.base.conf.js`. If you do not do this, UglifyJS will halt your build with an error as it cannot parse ES2015 syntax.
 
 ##### In the latest version of vue-cli (as of Oct. 2017):
 
