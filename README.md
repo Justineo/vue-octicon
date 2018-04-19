@@ -51,6 +51,16 @@ import 'vue-octicon/icons/repo'
 
 // or import all icons if you don't care about bundle size
 import 'vue-octicon/icons'
+
+// globally (in your main .js file)
+Vue.component('octicon', Octicon)
+
+// or locally (in your component file)
+export default {
+  components: {
+    Octicon
+  }
+}
 ```
 
 **Heads up**
